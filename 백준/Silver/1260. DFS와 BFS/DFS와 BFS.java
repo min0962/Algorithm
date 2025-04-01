@@ -40,18 +40,16 @@ public class Main {
         sb.append("\n");
 
         Queue<Integer> queue = new LinkedList<>();
-        queue.add(v);
         boolean[] tf = new boolean[n+1];
+        queue.add(v);
+        tf[v] = true;
         while (!queue.isEmpty()){
             int nodeNum = queue.remove();
-            if(tf[nodeNum]){
-                continue;
-            }
-            tf[nodeNum] = true;
             sb.append(nodeNum + " ");
             for(int i : arr[nodeNum]){
                 if(!tf[i]) {
                     queue.add(i);
+                    tf[i] = true;
                 }
             }
         }
