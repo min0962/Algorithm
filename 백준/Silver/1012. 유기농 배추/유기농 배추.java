@@ -29,7 +29,8 @@ public class Main {
             for (int n = 0; n < N; n++){
                 for (int m = 0; m < M; m++){
                     if(cabbage[n][m] == 1 && !tf[n][m]){
-                        dfs(cabbage,n,m);
+//                        dfs(cabbage,n,m);
+                        bfs(cabbage,n,m);
                         cnt++;
                     }
 
@@ -39,6 +40,33 @@ public class Main {
             sb.append(cnt+"\n");
         }
         System.out.println(sb);
+
+    }
+    public static void bfs(int[][] arr, int n, int m){
+        int[] npm = {1,-1,0,0};
+        int[] mpm = {0,0,1,-1};
+
+        Queue<int[]> q = new LinkedList<>();
+        q.add(new int[]{n, m});
+        tf[n][m] = true;
+        while (!q.isEmpty()){
+            int[] now = q.poll();
+
+            for(int i = 0; i < 4; i++){
+                int x = now[0] + npm[i];
+                int y = now[1] + mpm[i];
+                if(x>=0 && y>=0 && x<N && y<M){
+                    if(!tf[x][y] && arr[x][y] == 1){
+                        q.offer(new int[]{x,y});
+                        tf[x][y] = true;
+                    }
+                }
+            }
+
+
+        }
+
+
 
     }
     public static void dfs(int[][] arr, int n, int m){
@@ -67,6 +95,5 @@ public class Main {
 
     }
 }
-
 
 
