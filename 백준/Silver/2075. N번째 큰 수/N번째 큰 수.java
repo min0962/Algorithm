@@ -19,7 +19,7 @@ public class Main {
 			for(int j = 0; j < n; j++) {
 				int val = Integer.parseInt(st.nextToken());
 				minHeap.add(val);
-				if(i > 0){
+				if(minHeap.size() > n){
 					minHeap.poll();
 				}
 			}
