@@ -52,12 +52,9 @@ public class Main {
                 if (x >= 0 && x < n && y >= 0 && y < m) {
 
                     if (arr[x][y] == 0) {
-                        if (wall == 0 && !visited[x][y][0]) {
+                        if (!visited[x][y][wall]) {
                             queue.add(new int[]{x, y, depth + 1, wall});
-                            visited[x][y][0] = true;
-                        } else if (wall == 1 && !visited[x][y][1]) {
-                            queue.add(new int[]{x, y, depth + 1, wall});
-                            visited[x][y][1] = true;
+                            visited[x][y][wall] = true;
                         }
 
                     } else {
