@@ -32,7 +32,7 @@ public class Main {
             return memo[n];
         }
 
-        return memo[n] = fibbo(n - 1) + fibbo(n - 2);
+        return memo[n] = (fibbo(n - 1) + fibbo(n - 2)) % 1_000_000_007;
 
     }
 
