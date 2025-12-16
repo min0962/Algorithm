@@ -32,6 +32,10 @@ public class Main {
 
         int[] xx = {0, 0, 1, -1};
         int[] yy = {1, -1, 0, 0};
+        int minX = r - 1;
+        int minY = c - 1;
+        int maxX = 0;
+        int maxY = 0;
 
         for (int[] point : list) {
 
@@ -55,21 +59,18 @@ public class Main {
                 arr[point[0]][point[1]]++;
             }
 
-        }
+            if (arr[point[0]][point[1]] == 1) {
+                minX = Math.min(minX, point[0]);
+                maxX = Math.max(maxX, point[0]);
+                minY = Math.min(minY, point[1]);
+                maxY = Math.max(maxY, point[1]);
+            }
 
-        int minX = r - 1;
-        int minY = c - 1;
-        int maxX = 0;
-        int maxY = 0;
+        }
 
         for (int i = 0; i < r; i++) {
             for (int j = 0; j < c; j++) {
-                if (arr[i][j] == 1) {
-                    minX = Math.min(minX, i);
-                    maxX = Math.max(maxX, i);
-                    minY = Math.min(minY, j);
-                    maxY = Math.max(maxY, j);
-                }
+
             }
         }
 
