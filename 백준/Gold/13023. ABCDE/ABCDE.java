@@ -10,7 +10,7 @@ public class Main {
     static int max = 0;
     static int n, m;
     static List<List<Integer>> friendList;
-    static List<Integer> list;
+    static boolean[] visited;
 
     public static void main(String[] args) throws IOException {
 
@@ -22,7 +22,7 @@ public class Main {
         m = Integer.parseInt(st.nextToken());
 
         friendList = new ArrayList<>();
-        list = new ArrayList<>();
+        visited = new boolean[n];
 
         for (int i = 0; i < n; i++) {
             friendList.add(new ArrayList<>());
@@ -38,9 +38,9 @@ public class Main {
         }
 
         for (int i = 0; i < n; i++) {
-            list.add(i);
+            visited[i] = true;
             dfs(i, 0);
-            list.remove(0);
+            visited[i] = false;
 
             if (max == 4) {
                 System.out.println(1);
@@ -48,9 +48,8 @@ public class Main {
             }
         }
 
-        
         System.out.println(0);
-        
+
 
     }
 
@@ -61,10 +60,10 @@ public class Main {
         }
 
         for (int val : friendList.get(v)) {
-            if (!list.contains(val)) {
-                list.add(val);
+            if (!visited[val]) {
+                visited[val] = true;
                 dfs(val, count + 1);
-                list.remove(list.size() - 1);
+                visited[val] = false;
             }
         }
 
