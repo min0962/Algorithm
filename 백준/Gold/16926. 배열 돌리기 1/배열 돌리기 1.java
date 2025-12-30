@@ -1,0 +1,75 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+public class Main {
+
+    public static void main(String[] args) throws IOException {
+
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        StringTokenizer st = new StringTokenizer(br.readLine());
+
+        int n = Integer.parseInt(st.nextToken());
+        int m = Integer.parseInt(st.nextToken());
+        int r = Integer.parseInt(st.nextToken());
+
+        int[][] arr = new int[n + 1][m + 1];
+        for (int i = 1; i <= n; i++) {
+            st = new StringTokenizer(br.readLine());
+            for (int j = 1; j <= m; j++) {
+                arr[i][j] = Integer.parseInt(st.nextToken());
+            }
+        }
+
+        rotation(arr, n, m, r);
+
+        StringBuilder sb = new StringBuilder();
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= m; j++) {
+                sb.append(arr[i][j]).append(" ");
+            }
+            sb.append("\n");
+        }
+
+        System.out.println(sb);
+
+    }
+
+    private static void rotation(int[][] arr, int n, int m, int r) {
+
+        for (int b = 0; b < r; b++) {
+            int maxI = n + 1;
+            int maxJ = m + 1;
+            for (int a = 1; a <= Math.min(n, m) / 2; a++) {
+                int i = a;
+                int j = a;
+                maxI--;
+                maxJ--;
+                int temp = arr[i][j];
+
+                while (j != maxJ) {
+                    arr[i][j] = arr[i][j + 1];
+                    j++;
+                }
+                while (i != maxI) {
+                    arr[i][j] = arr[i + 1][j];
+                    i++;
+                }
+                while (j != a) {
+                    arr[i][j] = arr[i][j - 1];
+                    j--;
+                }
+                while (i != a) {
+                    arr[i][j] = arr[i - 1][j];
+                    i--;
+                }
+                arr[a + 1][a] = temp;
+
+            }
+        }
+    }
+
+
+}
